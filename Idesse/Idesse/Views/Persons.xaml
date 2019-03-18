@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ms="clr-namespace:Idesse.Controls"
+             x:Class="Idesse.Views.Persons"
+             Title="Kişiler">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="personadd.png" Clicked="OnInsertMenu" Order="Primary" Priority="0"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+            <StackLayout Orientation="Horizontal">
+                <SearchBar x:Name="PersonSearchBar" TextChanged="SearchBar_TextChanged" Placeholder="Arama"/>
+                <Image Source="filter.png"/>
+            </StackLayout>
+
+            <ListView x:Name="lstDB"
+                      HasUnevenRows="true"
+                      ItemsSource="{Binding .}"
+                       ItemSelected="Person_ItemSelected"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsPullToRefreshEnabled="True"
+                      ms:MultiSelectListView.IsMultiSelect="{Binding EnableMultiSelect}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ms:SelectableViewCell>
+
+                            <ms:SelectableViewCell.DataView>
+                                <StackLayout Orientation="Horizontal" 
+                                             HorizontalOptions="FillAndExpand"
+                                             Padding="10">
+                                    <!--<Image x:Name="imageLbl" IsEnabled="True" Source="confirm.png" WidthRequest="65" HeightRequest="65" IsVisible="True"/>-->
+                                    <StackLayout Orientation="Vertical">
+                                        <Label x:Name="deneme"
+                                           VerticalTextAlignment="Center"
+                                           Text="{Binding Name}"
+                                            FontAttributes="{Binding fontAttributes}"
+                                            FontSize="15"/>
+                                        <Label 
+                                           VerticalTextAlignment="Center"
+                                           Text="{Binding Hospital}"
+                                            Opacity="0.5"/>
+                                        <Label 
+                                           VerticalTextAlignment="Center"
+                                           Text="{Binding HospitalInformation}"
+                                            Opacity="0.5"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ms:SelectableViewCell.DataView>
+
+                            <ms:SelectableViewCell.CheckView>
+                                <Image  Source="confirmchange.png" WidthRequest="65" HeightRequest="65" HorizontalOptions="Center"/>
+                            </ms:SelectableViewCell.CheckView>
+
+                        </ms:SelectableViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <DatePicker x:Name="datepicker" MinimumDate="03/08/1990" IsVisible="False" />
+
+            <StackLayout x:Name="menu" Orientation="Horizontal" BackgroundColor="Red"
+                         Padding="10,5,10,5" IsVisible="False">
+                <StackLayout VerticalOptions="Center">
+                    <Image Source="geri.png"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Back_Clicked"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Margin="5,0,5,0">
+                    <Image Source="planla.png"/>
+                    <Label Text="Planla" TextColor="White"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Planla_Clicked"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Margin="5,0,5,0">
+                    <Image Source="raporla.png"/>
+                    <Label Text="Raporla" TextColor="White"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Margin="5,0,5,0">
+                    <Image Source="numune.png"/>
+                    <Label Text="Numune" TextColor="White"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Margin="5,0,5,0">
+                    <Image Source="lisekle.png"/>
+                    <Label Text="Lis.Ekle" TextColor="White"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBoldSelected_Clicked"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Margin="5,0,5,0">
+                    <Image Source="diger.png"/>
+                    <Label Text="Diğer" TextColor="White"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RemoveSelectedCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

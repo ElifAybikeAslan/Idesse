@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Idesse.Views.PersonInsertPage"
+             Title="Yeni Kayıt Ekle">
+    <ContentPage.Content>
+        <TableView Intent="Form" Margin="15">
+            <TableRoot>
+                <TableSection>
+                    <EntryCell x:Name="txtDoctorName" Label="Doktor Adı : "/>
+                    <EntryCell x:Name="txtHospital" Label="Hastane : "/>
+                    <EntryCell x:Name="txtHospitalInformation" Label="Hastane Detay : "/>
+                    <ViewCell>
+                        <Button  BackgroundColor="#b2b2b2" TextColor="White" Text="Kayıt Ekle" Clicked="OnInsert"/>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

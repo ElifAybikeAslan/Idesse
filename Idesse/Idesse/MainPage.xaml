@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Idesse"
+             Title="TEST"
+             x:Class="Idesse.MainPage">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu"
+                     BackgroundColor="#e8e8e8">
+            <StackLayout Orientation="Vertical">
+                <StackLayout.Children>
+                    <Label Text="{Binding Header}"/>
+                    <Image Source="{Binding Image}"
+                           WidthRequest="96"
+                           HeightRequest="96"/>
+                    <Label Text="{Binding Footer}"
+                           TextColor="Black"
+                           FontSize="Medium"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Margin="0,10,0,20"/>
+                </StackLayout.Children>
+
+                <ListView x:Name="navigationDrawerList"
+                          RowHeight="55"
+                          SeparatorVisibility="Default"
+                          BackgroundColor="#e8e8e8"
+                          ItemSelected="OnMenuItemSelected">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <StackLayout VerticalOptions="FillAndExpand"
+                                             Orientation="Horizontal"
+                                             Padding="20,10,0,10"
+                                             Spacing="20">
+                                    <Image Source="{Binding Icon}"
+                                           WidthRequest="40"
+                                           HeightRequest="40"
+                                           VerticalOptions="Start"/>
+
+                                    <Label Text="{Binding Title}"
+                                           FontSize="Small"
+                                           VerticalOptions="End"
+                                           TextColor="Black"/>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+
+</MasterDetailPage>
